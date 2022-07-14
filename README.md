@@ -30,10 +30,9 @@ samples, guidance on mobile development, and a full API reference.
 
 
 <div>
-        <div">
+        <div>
             <img src="https://user-images.githubusercontent.com/48220392/178951868-14bb5df4-fcf8-4bd4-8440-9c99da89e3b6.jpeg" width="200" height="370" />
         </div>
-  
         <div>
             <img src="https://user-images.githubusercontent.com/48220392/178952308-8355b55c-2bac-4f27-80e7-44464c715105.jpeg" width="200" height="370" />
         </div>
