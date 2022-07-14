@@ -29,7 +29,7 @@ samples, guidance on mobile development, and a full API reference.
 ![4](https://user-images.githubusercontent.com/48220392/178952881-28727876-27fd-4d39-bd3c-e9f614dbaa3b.jpg | width=100) -->
 
 
-<div>
+<div display: flex;flex-wrap: wrap;margin: 0 50px; padding: 30px;>
         <div>
             <img src="https://user-images.githubusercontent.com/48220392/178951868-14bb5df4-fcf8-4bd4-8440-9c99da89e3b6.jpeg" width="200" height="370" />
         </div>
