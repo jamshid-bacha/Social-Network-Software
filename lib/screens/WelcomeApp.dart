@@ -379,8 +379,8 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
 
   Future logintwitter() async {
     final twitterLogin = TwitterLogin(
-      apiKey: 'x6hISLmGW37HuEb9T83LZvNeC',
-      apiSecretKey: 'UqySRoDzXqvcydHtjexqMkam1BvIiiX8qvkbrbSABd0eMB9byz',
+      apiKey: 'xxxx',
+      apiSecretKey: 'xxxxx',
       redirectURI: 'example://',
     );
     setState(() {
