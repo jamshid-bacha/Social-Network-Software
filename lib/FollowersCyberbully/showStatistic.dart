@@ -1,54 +1,12 @@
-// import 'package:flutter/material.dart';
+import 'dart:convert';
 
-// class followerStatistic extends StatefulWidget {
-//   String messageText;
-//   int fuck;
-//   int shit;
-//   int asshole;
-//   int motherfucker;
-//   int bitch;
-//   followerStatistic(
-//       {Key? key,
-//       required this.messageText,
-//       required this.fuck,
-//       required this.shit,
-//       required this.bitch,
-//       required this.asshole,
-//       required this.motherfucker})
-//       : super(key: key);
-//   @override
-//   _followerStatistic createState() => _followerStatistic();
-// }
-
-// class _followerStatistic extends State<followerStatistic> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: WillPopScope(
-//         onWillPop: () async {
-//           Navigator.pop(context, false);
-//           return Future(() => false);
-//         },
-//         child: Column(
-//           children: [
-//             Text('This is mmeeee' + widget.messageText),
-//             Text('Fuck ${widget.fuck}'),
-//             Text('Bitch ${widget.bitch}'),
-//             Text('Shit ${widget.shit}'),
-//             Text('Asshole ${widget.asshole}'),
-//             Text('Mother Fucker ${widget.motherfucker}'),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// ignore_for_file: deprecated_member_use
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:syncfusion_flutter_charts/sparkcharts.dart';
+import 'dart:async';
+import 'package:twitter_api_v2/twitter_api_v2.dart' as v2;
+import 'package:http/http.dart' as http;
 
 class followerStatistic extends StatefulWidget {
   static const String id = "followerStatistic";
@@ -72,8 +30,25 @@ class followerStatistic extends StatefulWidget {
 }
 
 class _followerStatistic extends State<followerStatistic> {
-  List<ChartData> data = [];
+  final twitter = v2.TwitterApi(
+    bearerToken:
+        'xxx',
+    oauthTokens: v2.OAuthTokens(
+      consumerKey: 'xxx',
+      consumerSecret: 'xxx',
+      accessToken: 'xxx',
+      accessTokenSecret: 'xxx',
+    ),
+    retryConfig: v2.RetryConfig.regularIntervals(
+      maxAttempts: 5,
+      intervalInSeconds: 3,
+    ),
 
+    //! The default timeout is 10 seconds.
+    timeout: Duration(seconds: 20),
+  );
+
+  List<ChartData> data = [];
   @override
   void initState() {
     data = [
@@ -171,8 +146,52 @@ class _followerStatistic extends State<followerStatistic> {
                             child: const Text('No'),
                           ),
                           FlatButton(
-                            onPressed: () {
+                            onPressed: () async {
                               // dismisses only the dialog and returns true
+                              try {
+                                final filteredStream =
+                                    await twitter.usersService.destroyFollow(
+                                        userId: '818637730485862401',
+                                        targetUserId: '1036888711370289152');
+                                var url =
+                                    "http://192.168.0.26:8000/deleteBadFollower";
+                                final http.Response response = await http.post(
+                                  Uri.parse(url),
+                                  headers: <String, String>{
+                                    'Content-Type':
+                                        'application/json; charset=UTF-8',
+                                  },
+                                  body: jsonEncode(<String, String>{
+                                    'userID': '818637730485862401',
+                                    'followerID': '1036888711370289152'
+                                  }),
+                                );
+                                var parse = jsonDecode(response.body);
+                                if (response.statusCode == 200) {
+                                  if (kDebugMode) {
+                                    print(parse["msg"]);
+                                  }
+                                }
+                              } on TimeoutException catch (e) {
+                                if (kDebugMode) {
+                                  print(e);
+                                }
+                              } on v2.UnauthorizedException catch (e) {
+                                if (kDebugMode) {
+                                  print(e);
+                                }
+                              } on v2.RateLimitExceededException catch (e) {
+                                if (kDebugMode) {
+                                  print(e);
+                                }
+                              } on v2.TwitterException catch (e) {
+                                if (kDebugMode) {
+                                  print(e.response.headers);
+                                  print(e.body);
+                                  print(e);
+                                }
+                              }
+                              Navigator.of(context).pop();
                             },
                             child: const Text('Yes'),
                           ),
