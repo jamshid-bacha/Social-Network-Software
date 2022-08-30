@@ -396,7 +396,7 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
       // sendUserInfoServer(
       //     userCredential.additionalUserInfo!.profile!['id'].toString(),
       //     userCredential.additionalUserInfo!.username.toString());
-
+      // print(userCredential.user!);
       switch (value.status) {
         case TwitterLoginStatus.loggedIn:
           print('====== Login success ======');
@@ -412,6 +412,23 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
                   userCredential.additionalUserInfo!.profile!['id'].toString(),
               'username':
                   userCredential.additionalUserInfo!.username.toString(),
+              'displayName': userCredential.user!.displayName.toString(),
+              'photoURL': userCredential.user!.photoURL.toString(),
+              'friends_count': userCredential
+                  .additionalUserInfo!.profile!['friends_count']
+                  .toString(),
+              'followers_count': userCredential
+                  .additionalUserInfo!.profile!['followers_count']
+                  .toString(),
+              'time_zone': userCredential
+                  .additionalUserInfo!.profile!['time_zone']
+                  .toString(),
+              'favourites_count': userCredential
+                  .additionalUserInfo!.profile!['favourites_count']
+                  .toString(),
+              'verified': userCredential
+                  .additionalUserInfo!.profile!['verified']
+                  .toString(),
             }),
           );
           var parse = jsonDecode(response.body);
@@ -432,7 +449,8 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
                             .toString(),
                         following: userCredential
                             .additionalUserInfo!.profile!['friends_count'],
-                        followers: parse["totalFollowr"],
+                        followers: userCredential
+                            .additionalUserInfo!.profile!['followers_count'],
                         time_zone: userCredential
                             .additionalUserInfo!.profile!['time_zone']
                             .toString(),
@@ -445,7 +463,44 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
               isLoading = result;
             });
           }
-
+          // var usrName = userCredential.additionalUserInfo!.username.toString();
+          // var link = 'http://3.39.102.69:5000/get_user/';
+          // var aaaa = link + usrName;
+          // print(aaaa);
+          // final response = await http.get(Uri.parse(aaaa));
+          // // print(response);
+          // var parse = jsonDecode(response.body);
+          // if (response.statusCode == 200) {
+          //   print(userCredential.user);
+          //   bool result = await Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (context) => WelcomeTwitter(
+          //               msg: "kkk",
+          //               displayName:
+          //                   userCredential.user!.displayName.toString(),
+          //               photoURL: userCredential.user!.photoURL.toString(),
+          //               username: userCredential.additionalUserInfo!.username
+          //                   .toString(),
+          //               id: userCredential.additionalUserInfo!.profile!['id']
+          //                   .toString(),
+          //               following: userCredential
+          //                   .additionalUserInfo!.profile!['friends_count'],
+          //               followers: 4,
+          //               time_zone: userCredential
+          //                   .additionalUserInfo!.profile!['time_zone']
+          //                   .toString(),
+          //               favourites_count: userCredential
+          //                   .additionalUserInfo!.profile!['favourites_count']
+          //                   .toString(),
+          //             )),
+          //   );
+          //   setState(() {
+          //     isLoading = result;
+          //   });
+          // } else {
+          //   throw Exception('Failed to load album');
+          // }
           break;
         case TwitterLoginStatus.cancelledByUser:
           print('====== Login cancel ======');
