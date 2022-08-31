@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../FollowersCyberbully/listFollowersUsingBadWords.dart';
 import '../Following/RankingFollowing.dart';
 import 'package:snapp4/screens/WelcomeApp.dart';
 import '../Followers/RankingFollowers.dart';
@@ -362,6 +363,81 @@ class _WelcomeTwitter extends State<WelcomeTwitter> {
                     const SizedBox(
                       height: 10,
                     ),
+
+                    InkWell(
+                      onTap: () async {
+                        var url =
+                            'http://192.168.0.26:8000/CyberbullyFollowersRanking';
+                        final http.Response response = await http.post(
+                          Uri.parse(url),
+                          headers: <String, String>{
+                            'Content-Type': 'application/json; charset=UTF-8',
+                          },
+                          body: jsonEncode(<String, String>{
+                            'username': widget.username,
+                          }),
+                        );
+                        var parse = jsonDecode(response.body);
+                        if (response.statusCode == 200) {
+                          // if (kDebugMode) {
+                          //   print(widget.username);
+                          //   print(parse["msg"]);
+                          // }
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FollowersCyberbully(
+                                      displayName: widget.displayName,
+                                      photoURL: widget.photoURL,
+                                      username: widget.username,
+                                      following: widget.following,
+                                      followers: widget.followers,
+                                      userid: widget.id,
+                                      dataFromServer: parse['msg'],
+                                    )),
+                          );
+                        }
+                      },
+
+                      // onTap: () async {
+                      //   var url =
+                      //       'http://192.168.0.26:8000/CyberbullyFollowersRanking';
+                      //   final response = await http.get(Uri.parse(url));
+                      //   if (response.statusCode == 200) {
+                      //     var parse = jsonDecode(response.body);
+                      //     if (kDebugMode) {
+                      //       print(parse['msg']);
+                      //     }
+                      //     // await Navigator.push(
+                      //     //   context,
+                      //     //   MaterialPageRoute(
+                      //     //       builder: (context) => FollowersCyberbully(
+                      //     //             displayName: widget.displayName,
+                      //     //             photoURL: widget.photoURL,
+                      //     //             username: widget.username,
+                      //     //             following: widget.following,
+                      //     //             followers: widget.followers,
+                      //     //             dataFromServer: parse['msg'],
+                      //     //           )),
+                      //     // );
+                      //   }
+                      // },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(50)),
+                        margin: const EdgeInsets.fromLTRB(30, 0, 30, 0),
+                        child: const Center(
+                            child: Text(
+                          'Show Followers Using bad words',
+                          style: TextStyle(fontSize: 16, color: Colors.white),
+                        )),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     InkWell(
                       onTap: () {
                         Navigator.push(
@@ -410,4 +486,3 @@ fetchDatafromServer() async {
     return false;
   }
 }
-
