@@ -11,6 +11,12 @@ class ShowList extends StatefulWidget {
   String imageUrl;
   String total_badWordsUsed;
   bool isMessageRead;
+  String location;
+  String latitude;
+  String longitude;
+  String tweet_usr_id;
+  String profile_image_url_https;
+  var userid;
   ShowList(
       {Key? key,
       required this.followerUser_name,
@@ -21,7 +27,13 @@ class ShowList extends StatefulWidget {
       required this.shit,
       required this.bitch,
       required this.asshole,
-      required this.motherfucker})
+      required this.motherfucker,
+      required this.location,
+      required this.latitude,
+      required this.longitude,
+      required this.tweet_usr_id,
+      required this.profile_image_url_https,
+      required this.userid})
       : super(key: key);
   @override
   _ShowList createState() => _ShowList();
@@ -40,7 +52,8 @@ class _ShowList extends State<ShowList> {
               child: Row(
                 children: <Widget>[
                   CircleAvatar(
-                    backgroundImage: NetworkImage(widget.imageUrl),
+                    backgroundImage:
+                        NetworkImage(widget.profile_image_url_https),
                     maxRadius: 30,
                   ),
                   SizedBox(
@@ -71,8 +84,9 @@ class _ShowList extends State<ShowList> {
                                               bitch: widget.bitch,
                                               shit: widget.shit,
                                               asshole: widget.asshole,
-                                              motherfucker:
-                                                  widget.motherfucker)),
+                                              motherfucker: widget.motherfucker,
+                                              tweet_usr_id: widget.tweet_usr_id,
+                                              userid: widget.userid)),
                                     )
                                   },
                               child: const Text('Check Statistics')),
