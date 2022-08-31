@@ -16,6 +16,8 @@ class followerStatistic extends StatefulWidget {
   int asshole;
   int motherfucker;
   int bitch;
+  String tweet_usr_id;
+  var userid;
   followerStatistic(
       {Key? key,
       required this.messageText,
@@ -23,7 +25,9 @@ class followerStatistic extends StatefulWidget {
       required this.shit,
       required this.bitch,
       required this.asshole,
-      required this.motherfucker})
+      required this.motherfucker,
+      required this.tweet_usr_id,
+      required this.userid})
       : super(key: key);
   @override
   _followerStatistic createState() => _followerStatistic();
@@ -32,12 +36,12 @@ class followerStatistic extends StatefulWidget {
 class _followerStatistic extends State<followerStatistic> {
   final twitter = v2.TwitterApi(
     bearerToken:
-        'xxx',
+        'xxxxxxxx',
     oauthTokens: v2.OAuthTokens(
-      consumerKey: 'xxx',
-      consumerSecret: 'xxx',
-      accessToken: 'xxx',
-      accessTokenSecret: 'xxx',
+      consumerKey: 'xxxxx',
+      consumerSecret: 'xx',
+      accessToken: 'xxx-xxx',
+      accessTokenSecret: 'xxxx',
     ),
     retryConfig: v2.RetryConfig.regularIntervals(
       maxAttempts: 5,
@@ -63,6 +67,11 @@ class _followerStatistic extends State<followerStatistic> {
 
   @override
   Widget build(BuildContext context) {
+    if (kDebugMode) {
+      print(widget.tweet_usr_id);
+      print(widget.userid);
+    }
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -151,8 +160,8 @@ class _followerStatistic extends State<followerStatistic> {
                               try {
                                 final filteredStream =
                                     await twitter.usersService.destroyFollow(
-                                        userId: '818637730485862401',
-                                        targetUserId: '1036888711370289152');
+                                        userId: widget.userid,
+                                        targetUserId: widget.tweet_usr_id);
                                 var url =
                                     "http://192.168.0.26:8000/deleteBadFollower";
                                 final http.Response response = await http.post(
@@ -162,8 +171,8 @@ class _followerStatistic extends State<followerStatistic> {
                                         'application/json; charset=UTF-8',
                                   },
                                   body: jsonEncode(<String, String>{
-                                    'userID': '818637730485862401',
-                                    'followerID': '1036888711370289152'
+                                    'userID': widget.userid,
+                                    'followerID': widget.tweet_usr_id
                                   }),
                                 );
                                 var parse = jsonDecode(response.body);
