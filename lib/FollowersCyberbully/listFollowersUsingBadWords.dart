@@ -20,6 +20,7 @@ class FollowersCyberbully extends StatefulWidget {
   var following;
   var followers;
   var dataFromServer;
+  var userid;
   FollowersCyberbully(
       // ignore: non_constant_identifier_names
       {Key? key,
@@ -28,7 +29,8 @@ class FollowersCyberbully extends StatefulWidget {
       required this.username,
       required this.following,
       required this.followers,
-      required this.dataFromServer})
+      required this.dataFromServer,
+      required this.userid})
       : super(key: key);
   @override
   _FollowersCyberbully createState() => _FollowersCyberbully();
@@ -220,6 +222,12 @@ class _FollowersCyberbully extends State<FollowersCyberbully> {
               motherfucker: edges![index]['motherfucker'],
               imageUrl: edges![index]['imageURl'].toString(),
               total_badWordsUsed: edges![index]['total_badWords'].toString(),
+              location: edges![index]['location'],
+              latitude: edges![index]['latitude'],
+              longitude: edges![index]['longitude'],
+              tweet_usr_id: edges![index]['tweet_usr_id'],
+              profile_image_url_https: edges![index]['profile_image_url_https'],
+              userid: widget.userid,
               isMessageRead: (index == 0 || index == 3) ? true : false,
             );
           },
