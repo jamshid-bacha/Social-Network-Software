@@ -8,10 +8,10 @@ import 'package:googleapis/youtube/v3.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   // Optional clientId
-  // clientId: '479882132969-9i9aqik3jfjd7qhci1nqf0bm2g71rm1u.apps.googleusercontent.com',
+  // clientId: 'xxxx',
   scopes: <String>[
     'email',
-    'https://www.googleapis.com/auth/youtube.readonly',
+    'xxxx',
   ],
 );
 
@@ -45,17 +45,16 @@ class YouTubeLoginState extends State<YouTubeLogin> {
       _contactText = 'Loading contact info...';
     });
     final http.Response response = await http.get(
-      Uri.parse('https://people.googleapis.com/v1/people/me/connections'
-          '?requestMask.includeField=person.names'),
+      Uri.parse('xxxx'),
       headers: await user.authHeaders,
     );
 
     final http.Response response2 = await http.get(
       Uri.parse(
-          'https://developers.google.com/apis-explorer/#p/youtube/v3/youtube.channels.list?part=snippet,contentDetails,brandingSettings&mine=true'),
+          'xxxx'),
       headers: await user.authHeaders,
     );
-    print('zazazamzamzammaammaamamamamamama');
+    print('xxxxx');
     final Map<String, dynamic> data2 =
         json.decode(response.body) as Map<String, dynamic>;
 
