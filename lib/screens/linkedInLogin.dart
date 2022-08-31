@@ -4,8 +4,8 @@ import 'package:linkedin_login/linkedin_login.dart';
 import 'package:flutter/material.dart';
 
 const String redirectUrl = 'http://localhost:54307/signin-linkedin';
-const String clientId = '78inl93181tmk6';
-const String clientSecret = 'TVaTcAuZOMxfNwda';
+const String clientId = 'xxx';
+const String clientSecret = 'xxx';
 
 class LinkedInProfileExamplePage extends StatefulWidget {
   const LinkedInProfileExamplePage({Key? key}) : super(key: key);
