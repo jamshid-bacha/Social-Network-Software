@@ -2,13 +2,13 @@
 # Flutter-Nodejs-HSN-App
 =======
 ## Social Network App
-1. Flutter based mobile app for Twitter followers ranking
+1. Flutter-based mobile app for Twitter followers ranking
 2. Ranke followers based on their tweets on Twitter
 3. If the followers use some abusive language on social media the app can rank them
 4. There is a button to unfollow such kinds of followers
 5. Shows the statistics of a few abusive words on this app
 6. Node.js is used as a server for this project -> the code can be found in another GitHub repo
-7. The abusive words ranking and sentiment analysis is performed using Python and connected with Node.js as a child process (Multi processing) code can be find in another Github repo
+7. The abusive words ranking and sentiment analysis are performed using Python and connected with Node.js as a child process (Multiprocessing) code can be found in another Github repo
 ## Mobile App Screenshots
 <p float="left">
         <img src="https://user-images.githubusercontent.com/48220392/178951868-14bb5df4-fcf8-4bd4-8440-9c99da89e3b6.jpeg" width="200" height="370" hspace="20" />
