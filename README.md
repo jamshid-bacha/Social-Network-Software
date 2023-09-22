@@ -1,23 +1,15 @@
 <<<<<<< HEAD
 # Flutter-Nodejs-HSN-App
 =======
-# snapp4
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> eccddcb (first commit)
+## Social Network App
+1. Flutter based mobile app for Twitter followers ranking
+2. Ranke followers based on their tweets on Twitter
+3. If the followers use some abusive language on social media the app can rank them
+4. There is a button to unfollow such kinds of followers
+5. Shows the statistics of a few abusive words on this app
+6. Node.js is used as a server for this project -> the code can be found in another GitHub repo
+7. The abusive words ranking and sentiment analysis is performed using Python and connected with Node.js as a child process (Multi processing) code can be find in another Github repo
+## Mobile App Screenshots
 <p float="left">
         <img src="https://user-images.githubusercontent.com/48220392/178951868-14bb5df4-fcf8-4bd4-8440-9c99da89e3b6.jpeg" width="200" height="370" hspace="20" />
         <img src="https://user-images.githubusercontent.com/48220392/178952308-8355b55c-2bac-4f27-80e7-44464c715105.jpeg" width="200" height="370" hspace="20"/>  
@@ -41,6 +33,23 @@ samples, guidance on mobile development, and a full API reference.
         <img src="https://user-images.githubusercontent.com/48220392/186610891-31751956-d8a4-4abb-83fe-0f942bad993f.jpg" width="200" height="370" hspace="20"/>
         <img src="https://user-images.githubusercontent.com/48220392/186610988-987fedd1-5979-413d-9a35-2a0849cd96f7.jpg" width="200" height="370" hspace="20"/>
 </p>
+
+
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+
 
 
 
