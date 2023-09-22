@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# Flutter-Nodejs-Python-Heterogeneous Social Network-App
+# Heterogeneous Social Network-App Based on Flutter, Node.js, and Python
 =======
 ## Social Network App
 1. Flutter-based mobile app for Twitter followers ranking
